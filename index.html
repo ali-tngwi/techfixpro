@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TechFix Pro</title>
   <style>
     * {
@@ -13,86 +13,224 @@
     }
 
     body {
-      background-color: #f4f7fb;
-      color: #222;
-      line-height: 1.6;
+      background: #f4f7fb;
+      color: #1f2937;
     }
 
     header {
-      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      background: linear-gradient(135deg, #0f172a, #2563eb);
       color: white;
       text-align: center;
-      padding: 60px 20px;
+      padding: 70px 20px;
     }
 
     header h1 {
-      font-size: 3em;
+      font-size: 3rem;
       margin-bottom: 10px;
     }
 
     header p {
-      font-size: 1.2em;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     nav {
-      background: #08306b;
+      background: #111827;
+      padding: 15px;
       text-align: center;
-      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 14px;
       font-weight: bold;
     }
 
-    section {
-      max-width: 1000px;
+    nav a:hover {
+      color: #93c5fd;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
       margin: 40px auto;
-      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #0f172a;
+      margin-bottom: 25px;
+    }
+
+    .about,
+    .why-us,
+    .contact {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
     }
 
-    h2 {
-      color: #0d47a1;
-      margin-bottom: 15px;
+    .about p,
+    .contact p {
+      font-size: 1.05rem;
+      line-height: 1.8;
     }
 
-    ul {
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+      margin-bottom: 25px;
+    }
+
+    .tile {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+    }
+
+    .tile img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tile-content {
+      padding: 18px;
+    }
+
+    .tile h3 {
+      margin-bottom: 10px;
+      color: #1d4ed8;
+    }
+
+    .tile p {
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .detail-box {
+      display: none;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      padding: 28px;
+      margin-top: 15px;
+      margin-bottom: 35px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .detail-box.active {
+      display: block;
+    }
+
+    .detail-box h3 {
+      color: #1d4ed8;
+      margin-bottom: 12px;
+      font-size: 1.6rem;
+    }
+
+    .detail-box p {
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .detail-box ul {
       padding-left: 20px;
+      line-height: 1.9;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .why-card {
+      background: #eff6ff;
+      padding: 22px;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: bold;
+      color: #1e3a8a;
     }
 
     .cta {
-      text-align: center;
-      background: #1976d2;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
       color: white;
-      padding: 30px 20px;
+      text-align: center;
+      padding: 45px 20px;
+      border-radius: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      margin-bottom: 35px;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      font-size: 1.05rem;
+      margin-bottom: 18px;
     }
 
     .cta a {
       display: inline-block;
-      margin-top: 15px;
-      background: white;
-      color: #1976d2;
       padding: 12px 24px;
-      text-decoration: none;
-      border-radius: 8px;
+      background: white;
+      color: #1d4ed8;
       font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
     }
 
     footer {
-      text-align: center;
-      background: #08306b;
+      background: #111827;
       color: white;
-      padding: 20px;
+      text-align: center;
+      padding: 22px;
       margin-top: 30px;
     }
 
-    .contact p {
-      margin: 8px 0;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 6px 8px;
+      }
     }
   </style>
 </head>
@@ -100,63 +238,162 @@
 
   <header>
     <h1>TechFix Pro</h1>
-    <p>Snelle IT-oplossingen voor iedereen</p>
+    <p>Snelle en betrouwbare IT-oplossingen voor particulieren, studenten en kleine bedrijven.</p>
   </header>
 
   <nav>
-    <a href="#overons">Over Ons</a>
+    <a href="#over">Over Ons</a>
     <a href="#diensten">Diensten</a>
     <a href="#waarom">Waarom Wij</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <section id="overons">
-    <h2>Over Ons</h2>
-    <p>
-      TechFix Pro is gespecialiseerd in snelle en betrouwbare IT-oplossingen.
-      Wij helpen zowel particulieren als kleine bedrijven met computerproblemen,
-      netwerken en software. Onze missie is om technologie eenvoudig en toegankelijk
-      te maken voor iedereen.
-    </p>
-  </section>
+  <div class="container">
+    <section id="over" class="about">
+      <h2 class="section-title">Over Ons</h2>
+      <p>
+        TechFix Pro helpt klanten met computerproblemen, netwerkoplossingen en software-installaties.
+        Wij focussen op snelle service, duidelijke communicatie en betaalbare ondersteuning.
+        Onze onderneming is ideaal voor wie zonder stress geholpen wil worden met IT-problemen.
+      </p>
+    </section>
 
-  <section id="diensten">
-    <h2>Onze Diensten</h2>
-    <ul>
-      <li>PC en laptop herstellingen</li>
-      <li>Netwerk installatie (wifi, routers, bekabeling)</li>
-      <li>Virus verwijderen en beveiliging</li>
-      <li>Software installatie en updates</li>
-      <li>Gaming PC advies en builds</li>
-    </ul>
-  </section>
+    <section id="diensten">
+      <h2 class="section-title">Onze Diensten</h2>
 
-  <section id="waarom">
-    <h2>Waarom kiezen voor ons?</h2>
-    <ul>
-      <li>Snelle service</li>
-      <li>Betaalbare prijzen</li>
-      <li>Betrouwbare oplossingen</li>
-      <li>Ervaring in IT en technologie</li>
-    </ul>
-  </section>
+      <div class="tiles">
+        <div class="tile" onclick="showDetail('repair')">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Computer herstelling">
+          <div class="tile-content">
+            <h3>PC & Laptop Herstellingen</h3>
+            <p>Klik voor meer info over herstellingen en onderhoud.</p>
+          </div>
+        </div>
 
-  <section class="cta">
-    <h2>Problemen met je computer?</h2>
-    <p>Contacteer ons vandaag nog en wij helpen je snel verder!</p>
-    <a href="#contact">Neem contact op</a>
-  </section>
+        <div class="tile" onclick="showDetail('network')">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80" alt="Netwerk installatie">
+          <div class="tile-content">
+            <h3>Netwerk Installatie</h3>
+            <p>Klik voor meer info over wifi, routers en bekabeling.</p>
+          </div>
+        </div>
 
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p><strong>Email:</strong> info@techfixpro.be</p>
-    <p><strong>Telefoon:</strong> 0470 00 00 00</p>
-    <p><strong>Locatie:</strong> Gent</p>
-  </section>
+        <div class="tile" onclick="showDetail('security')">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=900&q=80" alt="Beveiliging">
+          <div class="tile-content">
+            <h3>Beveiliging & Virus Removal</h3>
+            <p>Klik voor meer info over digitale beveiliging.</p>
+          </div>
+        </div>
+
+        <div class="tile" onclick="showDetail('gaming')">
+          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=80" alt="Gaming pc">
+          <div class="tile-content">
+            <h3>Gaming PC Advies</h3>
+            <p>Klik voor meer info over builds en upgrades.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="detail-box" class="detail-box">
+        <h3 id="detail-title"></h3>
+        <p id="detail-text"></p>
+        <ul id="detail-list"></ul>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Problemen met je computer?</h2>
+      <p>Neem vandaag nog contact op en wij helpen je snel verder met een passende oplossing.</p>
+      <a href="#contact">Neem contact op</a>
+    </section>
+
+    <section id="waarom" class="why-us">
+      <h2 class="section-title">Waarom kiezen voor TechFix Pro?</h2>
+      <div class="why-grid">
+        <div class="why-card">Snelle service</div>
+        <div class="why-card">Betaalbare prijzen</div>
+        <div class="why-card">Professionele aanpak</div>
+        <div class="why-card">Duidelijke communicatie</div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contact</h2>
+      <p><strong>Email:</strong> info@techfixpro.be</p>
+      <p><strong>Telefoon:</strong> 0470 00 00 00</p>
+      <p><strong>Locatie:</strong> Gent</p>
+    </section>
+  </div>
 
   <footer>
     <p>&copy; 2026 TechFix Pro - Alle rechten voorbehouden</p>
   </footer>
+
+  <script>
+    function showDetail(type) {
+      const detailBox = document.getElementById("detail-box");
+      const title = document.getElementById("detail-title");
+      const text = document.getElementById("detail-text");
+      const list = document.getElementById("detail-list");
+
+      let data = {
+        repair: {
+          title: "PC & Laptop Herstellingen",
+          text: "Wij herstellen trage computers, defecte laptops en technische problemen snel en professioneel.",
+          items: [
+            "Hardware controle en vervanging",
+            "Opschonen van trage systemen",
+            "Problemen met opstarten oplossen",
+            "Onderhoud en prestatieverbetering"
+          ]
+        },
+        network: {
+          title: "Netwerk Installatie",
+          text: "Wij installeren en optimaliseren thuis- en kantoornetwerken voor een stabiele en snelle verbinding.",
+          items: [
+            "Wifi configuratie",
+            "Router en switch installatie",
+            "Bekabelde netwerken opzetten",
+            "Netwerkproblemen analyseren"
+          ]
+        },
+        security: {
+          title: "Beveiliging & Virus Removal",
+          text: "Bescherm jouw toestel tegen malware, virussen en online bedreigingen met onze beveiligingsservice.",
+          items: [
+            "Virussen verwijderen",
+            "Antivirus configureren",
+            "Veiligheidscontrole uitvoeren",
+            "Updates en bescherming installeren"
+          ]
+        },
+        gaming: {
+          title: "Gaming PC Advies",
+          text: "Voor gamers bieden wij advies op maat voor krachtige pc-builds, upgrades en prestaties.",
+          items: [
+            "Samenstellen van gaming pc’s",
+            "Advies voor componenten",
+            "Upgrade van bestaande systemen",
+            "Optimalisatie voor betere prestaties"
+          ]
+        }
+      };
+
+      title.textContent = data[type].title;
+      text.textContent = data[type].text;
+
+      list.innerHTML = "";
+      data[type].items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+
+      detailBox.classList.add("active");
+      detailBox.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  </script>
 
 </body>
 </html>
